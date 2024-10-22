@@ -82,7 +82,9 @@ public class Persona {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Persona persona = (Persona) o;
-        return edad == persona.edad && Objects.equals(nombre, persona.nombre) && Objects.equals(apellidos, persona.apellidos);
+        return edad == persona.edad &&
+                Objects.equals(nombre, persona.nombre) &&
+                Objects.equals(apellidos, persona.apellidos);
     }
 
     /**
