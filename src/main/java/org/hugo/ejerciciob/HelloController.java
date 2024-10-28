@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import Model.Persona;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Controlador de la interfaz gráfica que gestiona la lógica de la aplicación.
@@ -16,16 +17,16 @@ public class HelloController {
     private Button btt_agregar;
 
     @FXML
-    private TableColumn<Persona, String> c_apellidos;
+    private TableColumn<Persona, String> c_Apellidos;
 
     @FXML
     private TableColumn<Persona, Integer> c_edad;
 
     @FXML
-    private TableColumn<Persona, String> c_nombre;
+    private TableColumn<Persona, String> c_Nombre;
 
     @FXML
-    private TableView<Persona> personTable;
+    private TableView<Persona> table_view;
 
     @FXML
     private TextField txt_apellidos;
@@ -38,7 +39,20 @@ public class HelloController {
 
     // Lista observable que contiene los objetos Persona
     private ObservableList<Persona> personasList = FXCollections.observableArrayList();
+    /**
+     * Inicializa la tabla y las columnas al cargar la vista.
+     * Establece los valores de las columnas para que correspondan a los atributos de la clase Persona.
+     */
+    @FXML
+    void initialize() {
+        c_Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        c_Apellidos.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        c_edad.setCellValueFactory(new PropertyValueFactory<>("edad"));
 
+
+        // Vincula la lista observable a la tabla
+        table_view.setItems(personasList);
+    }
     /**
      * Método llamado cuando el usuario hace clic en el botón "Agregar".
      * Verifica que los campos de entrada sean válidos y luego agrega una nueva persona a la tabla.
@@ -87,6 +101,7 @@ public class HelloController {
 
         // Agregar la nueva persona a la lista y mostrar mensaje de éxito
         personasList.add(nuevaPersona);
+
         mostrarInformacion("Persona agregada con éxito.");
     }
 
@@ -109,10 +124,16 @@ public class HelloController {
      * @param mensaje Mensaje informativo a mostrar.
      */
     private void mostrarInformacion(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Éxito");
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+        try {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Éxito");
+                alert.setHeaderText(null);
+                alert.setContentText(mensaje);
+                alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarError("Error al mostrar información: " + e.getMessage());
+        }
     }
+
 }

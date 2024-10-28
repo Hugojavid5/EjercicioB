@@ -38,7 +38,7 @@ public class HelloApplication extends Application {
         stage.setMinHeight(325);
 
         // Configura el título de la ventana
-        stage.setTitle("Ejercicio B!");
+        stage.setTitle("Personas");
 
         // Establece la escena en el escenario y muestra la ventana
         stage.setScene(scene);
