@@ -11,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * Controlador de la interfaz gráfica que gestiona la lógica de la aplicación.
  * Se encarga de manejar las interacciones del usuario y la actualización de la tabla de personas.
  */
-public class HelloController {
+public class PersonasController {
 
     @FXML
     private Button btt_agregar;
